@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="display.css" />
+  </head>
+  <body>
+    <div id="parentForMoreInput">
+      <form class="formOne">
+        <div id="potentialCourses">
+          <label for="" id="ScheduleLabel">Plan Schedule</label>
+          <div id="firstAdd">
+            <span id="firstUI">
+              <input
+                type="text"
+                name="targetCourse"
+                placeholder="Enter a target course"
+                id="firstScheduleInput"
+                required
+              />
+              <button type="button" id="addMoreCourses">Add</button>
+            </span>
+          </div>
+          <div>
+            <span>
+              <button type="submit" id="firstSubmitButton">Submit</button>
+              <button type="reset" id="firstResetButton">Reset</button>
+            </span>
+          </div>
+        </div>
+      </form>
+
+      <div id="spacer"></div>
+
+      <form class="formTwo">
+        <div id="takenCourses">
+          <label for="" id="determineEligibleLabel"
+            >Determine Eligible Classes</label
+          >
+          <div id="secondAdd">
+            <span id="secondUI">
+              <input type="text" name="twoBox" id="firstEligibleInput" />
+              <button type="button" id="addMoreTakenCourses">Add</button>
+            </span>
+          </div>
+          <div>
+            <span>
+              <button type="submit" id="secondSubmitButton">Submit</button>
+              <button type="reset" id="secondResetButton">Reset</button>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.5/axios.min.js"></script>
+    <script src="display.js"></script>
+  </body>
+</html>

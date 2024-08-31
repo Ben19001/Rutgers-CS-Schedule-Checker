@@ -1,0 +1,72 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Current File",
+      "request": "launch",
+      "mainClass": "prereqchecker.SchedulePlan",
+      "projectName": "PreReqChecker",
+      "args": "adjlist.in scheduleplan.in scheduleplan.out"
+    },
+    // {
+    //   "type": "java",
+    //   "name": "ValidPrereq",
+    //   "request": "launch",
+    //   "mainClass": "prereqchecker.ValidPrereq",
+    //   "projectName": "PreReqChecker_f17df6e1"
+    // },
+    // {
+    //   "type": "java",
+    //   "name": "Launch Current File",
+    //   "request": "launch",
+    //   "mainClass": "prereqchecker.ValidPrereq",
+    //   "projectName": "PreReqChecker",
+    //   "args": "adjlist.in validprereq.in validprereq.out"
+    // },
+    {
+      "type": "java",
+      "name": "Launch Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "Launch SafeIterable",
+      "request": "launch",
+      "mainClass": "autograder.SafeIterable",
+      "projectName": "PreReqChecker"
+    },
+    {
+      "type": "java",
+      "name": "Launch StdIn",
+      "request": "launch",
+      "mainClass": "autograder.StdIn",
+      "projectName": "PreReqChecker"
+    },
+    {
+      "type": "java",
+      "name": "Launch TestPreReqChecker",
+      "request": "launch",
+      "mainClass": "autograder.TestPreReqChecker",
+      "projectName": "PreReqChecker"
+    },
+    {
+      "type": "java",
+      "name": "Launch UtilCOS",
+      "request": "launch",
+      "mainClass": "autograder.UtilCOS",
+      "projectName": "PreReqChecker"
+    },
+    {
+      "type": "java",
+      "name": "Launch StdOut",
+      "request": "launch",
+      "mainClass": "prereqchecker.StdOut",
+      "projectName": "PreReqChecker"
+    }
+  ]
+}

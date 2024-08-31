@@ -1,0 +1,32 @@
+#parentForMoreInput {
+    position: relative;
+}
+
+@media (min-width: 600px) {
+    #potentialCourses, #takenCourses {
+        display: inline-block;
+        position: absolute;
+    }
+    
+    #takenCourses {
+        margin-left: 55%;
+    }
+}
+
+@media (max-width: 600px) {
+    #potentialCourses, #takenCourses {
+       display: initial;
+       position: initial;
+    }    
+
+    #determineEligibleLabel {
+        margin-left: 0px;
+    }
+
+    .formTwo {
+        margin-top: 50px;
+    }
+    
+}
+
+
