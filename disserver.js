@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const fs = require('fs');
+const readline = require('readline');
 const path = require('path');
 const bodyParser = require('body-parser');
 const axios = require("axios");
@@ -19,9 +20,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Serve the homepage
-app.get("/", (req, res) => {
-    res.render("display"); 
-});
+app.get('/', (req, res) => {
+    res.render('display');
+})
+
+app.get("/loadDatabase", async (req, res) => {
+    try {
+        let classDatabase = await readFile('adjlist.in');
+        res.json(classDatabase);
+    } catch (err) {
+        res.status(500).send("Error, couldn't load database");
+    }
+})
+
 
 app.post("/formOne", async (req, res) => {
     const classesToPlan = {
@@ -50,11 +61,11 @@ app.post("/formOne", async (req, res) => {
     const schedulebody = scheduleFilePath;
     axios.post(`http://localhost:8080/schedule?scheduleFilePath=${encodeURIComponent(schedulebody)}`) //need this to process post request
     .then(function (response) {
+        readFile('adjlist.in');
         res.setHeader('Content-Disposition', 'attachment; filename=scheduleplan.out');
         res.setHeader('Content-Type', 'text/plain');
         console.log(response.data);
-        res.send(response.data)
-        
+        res.send (response.data);
     })
     .catch(function(err) {
         console.log("Error during POST request:", err);
@@ -103,6 +114,43 @@ app.post("/formTwo", async (req, res) => {
 
 
 });
+
+let classDatabase = [];
+//let file = 'adjlist.in';
+
+function readFile(file) {
+    return new Promise((resolve, reject) => {
+        const fileStream = fs.createReadStream(file);
+        const rl = readline.createInterface({
+            input: fileStream,
+            crlfDelay: Infinity
+        });
+
+        let firstLine = '';
+        let lineCount = 0;
+
+        const classDatabase = [];
+
+        rl.on('line', (line) => {
+            if (lineCount === 0) {
+                firstLine = parseInt(line, 10);
+            } else if (lineCount <= firstLine) {
+                classDatabase.push(line);
+            } else if (lineCount > firstLine) {
+                rl.close();
+            }
+            lineCount++;
+        });
+
+        rl.on('close', () => {
+            resolve(classDatabase); 
+        });
+
+        rl.on('error', (err) => {
+            reject(err); 
+        });
+    });
+}
 
 
 

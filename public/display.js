@@ -78,14 +78,32 @@ function hash(inputScheduleArray) {
     }
 }
 
+//fetches data when pages load
+let classDatabase = [];
 
+async function loadDatabase() {
+    try {
+        const response = await fetch("http://localhost:5000/loadDatabase");
+        const data = await response.json();
+        classDatabase = [...data];
+    } catch (error) {
+        console.log("error: " , error);
+    }
+}
 
-
+loadDatabase().then(() => {
+console.log(classDatabase);
 const form = document.querySelector('.formOne');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     console.log(inputScheduleArray);
     const fd = new FormData(form);
+    for(let [key, value] of fd.entries()) {
+        if(!classDatabase.includes(value)) {
+            alert("Class not found");
+            return;
+        }
+    }
     for(let [key, value] of fd.entries()) {
         inputScheduleArray.push(value);
     }
@@ -112,12 +130,16 @@ form.addEventListener('submit', (e) => {
     .catch(err => console.error('Error:', err));
 });
 
-
-//post request form form two
 const formTwo = document.querySelector('.formTwo');
 formTwo.addEventListener('submit', (e) => {
     e.preventDefault();
     const fd = new FormData(formTwo);
+    for(let [key, value] of fd.entries()) {
+        if(!classDatabase.includes(value)) {
+            alert("Class not found");
+            return;
+        }
+    }
     for(let [key, value] of fd.entries()) {
         inputEligibleArray.push(value);
     }
@@ -181,13 +203,7 @@ function resetForm() {
     inputScheduleArray = [];
     inputEligibleArray = [];
     console.log("form reset");
-    // addHereFirst.innerHTML = '';
-    // addHereSecond.innerHTML = '';
-
 }
+})
 
- 
-
-
-//posting form data
 
